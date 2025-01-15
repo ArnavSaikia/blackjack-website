@@ -1,0 +1,27 @@
+.playArea,.player,.dealer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.player{
+    margin-top: 150px;
+}
+
+.card{
+    margin-right: 20px;
+}
+
+.name{
+    font-family: Arial;
+    font-size: 25px;
+    font-weight: bold;
+    color: gold;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,8 @@
+body{
+    background-image: url('/cards/background.png');
+}
+
+.card{
+    margin-right: 12px;
+}
+
