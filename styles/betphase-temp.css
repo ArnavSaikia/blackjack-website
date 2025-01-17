@@ -1,0 +1,26 @@
+body{
+    background-image: url("/cards/background.png");
+}
+
+/* Buttons CSS starts here */
+
+.deal-amount-button {
+    background-color: transparent;
+    border: none;
+    position: relative;
+}
+
+.amount-text{
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gold;
+}
+
+.chips{
+    height: 225px;
+    
+}
