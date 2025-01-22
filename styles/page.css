@@ -1,5 +1,6 @@
 body{
-    background-image: url('/cards/background.png');
+    background-image: url('/gui/b1.jpg');
+    background-size: cover;
 }
 
 .card{

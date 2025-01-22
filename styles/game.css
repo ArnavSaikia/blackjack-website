@@ -5,30 +5,70 @@
     align-items: center;
 }
 
+/*.playArea{
+    position: absolute;
+}*/
+
 .play-buttons{
     display: flex;
     justify-content: center;
 }
 
 .player{
-    margin-top: 150px;
+    margin-top: 40px;
+    margin-bottom: 25px;
 }
 
 .card{
     margin-right: 20px;
+    height: 240px;
+}
+
+.back-of-card{
+    border-radius: 9px;
 }
 
 .name{
-    font-family: Arial;
+    font-family: "Rye", serif;
     font-size: 25px;
     font-weight: bold;
-    color: gold;
+    color: rgb(186, 184, 184);
     margin-bottom: 10px;
 }
 
 .player-stats{
-    position: fixed;
+    position: absolute;
     z-index: 3;
     top: 10px;
     right: 10px;
+    color: white;
+    font-family: "Rye", serif;
+}
+
+.stand-button,.hit-button{
+    height:50px;
+    width: 90px;
+    border-radius: 50px;
+    margin-right: 25px;
+    margin-left: 13px;
+
+    border:none;
+    font-family: "Rye", serif;
+    background-color: rgb(53, 53, 53);
+    color: rgb(186, 184, 184);
+}
+
+.player-card-value,.dealer-card-value{
+    color: white;
+    position: fixed;
+}
+
+.dealer-card-value{
+    top: 150px;
+    right: 250px;
+}
+
+.player-card-value{
+    bottom: 175px;
+    right: 250px;
 }
