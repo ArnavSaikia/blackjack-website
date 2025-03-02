@@ -17,7 +17,7 @@ const cardsList = [
     { name: 'JackOfClubs', img: 'cards/jack_of_clubs.svg', value: 10, altValue: 10, number: 25 },
     { name: 'QueenOfClubs', img: 'cards/queen_of_clubs.svg', value: 10, altValue: 10, number: 35 },
     { name: 'KingOfClubs', img: 'cards/king_of_clubs.svg', value: 10, altValue: 10, number: 47 },
-    { name: 'AceOfClubs', img: 'cards/ace_of_clubs.svg', value: 11, altValue: 1, number: 13 },
+    { name: 'AceOfClubs', img: 'cards/ace_of_clubs.svg', value: 11, altValue: 1, number: 13, altStatus: false },
 
     // Diamonds
     { name: '2OfDiamonds', img: 'cards/2_of_diamonds.svg', value: 2, altValue: 2, number: 37 },
@@ -32,7 +32,7 @@ const cardsList = [
     { name: 'JackOfDiamonds', img: 'cards/jack_of_diamonds.svg', value: 10, altValue: 10, number: 26 },
     { name: 'QueenOfDiamonds', img: 'cards/queen_of_diamonds.svg', value: 10, altValue: 10, number: 12 },
     { name: 'KingOfDiamonds', img: 'cards/king_of_diamonds.svg', value: 10, altValue: 10, number: 42 },
-    { name: 'AceOfDiamonds', img: 'cards/ace_of_diamonds.svg', value: 11, altValue: 1, number: 49 },
+    { name: 'AceOfDiamonds', img: 'cards/ace_of_diamonds.svg', value: 11, altValue: 1, number: 49, altStatus: false },
 
     // Hearts
     { name: '2OfHearts', img: 'cards/2_of_hearts.svg', value: 2, altValue: 2, number: 31 },
@@ -47,7 +47,7 @@ const cardsList = [
     { name: 'JackOfHearts', img: 'cards/jack_of_hearts.svg', value: 10, altValue: 10, number: 43 },
     { name: 'QueenOfHearts', img: 'cards/queen_of_hearts.svg', value: 10, altValue: 10, number: 34 },
     { name: 'KingOfHearts', img: 'cards/king_of_hearts.svg', value: 10, altValue: 10, number: 29 },
-    { name: 'AceOfHearts', img: 'cards/ace_of_hearts.svg', value: 11, altValue: 1, number: 16 },
+    { name: 'AceOfHearts', img: 'cards/ace_of_hearts.svg', value: 11, altValue: 1, number: 16,  altStatus: false },
 
     // Spades
     { name: '2OfSpades', img: 'cards/2_of_spades.svg', value: 2, altValue: 2, number: 36 },
@@ -62,11 +62,12 @@ const cardsList = [
     { name: 'JackOfSpades', img: 'cards/jack_of_spades.svg', value: 10, altValue: 10, number: 7 },
     { name: 'QueenOfSpades', img: 'cards/queen_of_spades.svg', value: 10, altValue: 10, number: 20 },
     { name: 'KingOfSpades', img: 'cards/king_of_spades.svg', value: 10, altValue: 10, number: 2 },
-    { name: 'AceOfSpades', img: 'cards/ace_of_spades.svg', value: 11, altValue: 1, number: 3 }
+    { name: 'AceOfSpades', img: 'cards/ace_of_spades.svg', value: 11, altValue: 1, number: 3,  altStatus: false }
 ];
 
 let pCard=[]; let dCard=[];
 let pSum=0; let dSum=0;
+let standActive=false;
 initializeCard();
 renderCardValue('player');
 renderCardValue('dealer');
@@ -145,8 +146,11 @@ function getTotalValue(ofWho){
     }
 
     if(ofWho==='dealer'){
-        dCard.forEach((curr) => {
-            sum += curr.value;
+        dCard.forEach((curr,index) => {
+            if(!standActive){
+                if(index!=1) sum += curr.value;
+            }   
+            else sum += curr.value;     //not adding hidden card value as yet....added later when stand button is clicked
         });
     }
     
@@ -158,29 +162,79 @@ function assignValue(toWho){
 }
 
 function renderCardValue(ofWho){
-    document.querySelector(`.${ofWho}-card-value`).innerHTML = `${ofWho==='player'?'Your Hand Value: ':"House's Hand Value: "}${getTotalValue(ofWho)}`;
+    document.querySelector(`.${ofWho}-card-value`).innerHTML = `${ofWho==='player'?'Your Hand Value: ':"House's Hand Value: "}${ofWho==='player'?pSum:dSum}`;
 }
 
+function findAceCard(){     //finding if an ace card exists so its alt value can be used
+    for(let i=0; i<pCard.length; i++) {
+        if(pCard[i].value===11 && pCard[i].altStatus!==true){
+            pCard[i].altStatus = true;
+            //return pCard[i];
+            return true;
+        }
+    }
+    return false;  
+}
+
+function checkIfReductionNeeded(){
+    if(pSum>21 && findAceCard()){
+            pSum -= 10;
+    }
+}
+
+//configuring the win loss pop up to show up after the game is over
 function checkWinAfterStand(){
     if(dSum>21){
         assignValue('dealer');
         renderCardValue('dealer');
-        alert('House Busted! You Win');
+        /*setTimeout(() =>{
+            alert('House Busted! You Win');
+        }, 1500);*/
+        setTimeout(() =>{
+            document.querySelector('.popup-game-status').innerHTML = 'House Busted! You Win';
+            //add code here to reflect how much amount won/lost  (how much the bet was)
+            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+            document.querySelector('.winloss-popup').style.opacity = 1;
+        }, 1500);
     }
     else if(pSum>dSum){
         assignValue('dealer');
         renderCardValue('dealer');
-        alert('You Win');
+        /*setTimeout(() =>{
+            alert('You Win');
+        }, 1500);*/
+        setTimeout(() =>{
+            document.querySelector('.popup-game-status').innerHTML = 'You Win!';
+            //add code here to reflect how much amount won/lost  (how much the bet was)
+            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+            document.querySelector('.winloss-popup').style.opacity = 1;
+        }, 1500);
     }
     else if(pSum===dSum){
         assignValue('dealer');
         renderCardValue('dealer');
-        alert('It\'s a Draw');
+        /*setTimeout(() =>{
+            alert('It\'s a Draw');
+        }, 1500);*/
+        setTimeout(() =>{
+            document.querySelector('.popup-game-status').innerHTML = 'It\'s a Draw';
+            //add code here to reflect how much amount won/lost  (how much the bet was)
+            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+            document.querySelector('.winloss-popup').style.opacity = 1;
+        }, 1500); 
     }
     else{
         assignValue('dealer');
         renderCardValue('dealer');
-        alert('House Wins');
+        /*setTimeout(() =>{
+            alert('House Wins');
+        }, 1500);*/
+        setTimeout(() =>{
+            document.querySelector('.popup-game-status').innerHTML = 'House Wins';
+            //add code here to reflect how much amount won/lost  (how much the bet was)
+            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+            document.querySelector('.winloss-popup').style.opacity = 1;
+        }, 1500);  
     }
 
 }
@@ -188,19 +242,28 @@ function checkWinAfterStand(){
 
 document.querySelector('.hit-button').addEventListener('click',() => {
     dealAnotherCard('player');
-    renderCardValue('player');
     assignValue('player');
+    checkIfReductionNeeded();
+    renderCardValue('player');
     if(pSum>21){
-        alert('Bust! You Lose');
+        document.querySelector('.popup-game-status').innerHTML = 'Bust! You Lose';
+            //add code here to reflect how much amount won/lost  (how much the bet was)
+            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+            document.querySelector('.winloss-popup').style.opacity = 1;
     }
 }); //addivng event listener to buttons
 
 document.querySelector('.stand-button').addEventListener('click',() => {
     document.querySelector('.back-of-card').src = dCard[1].img;
+    standActive = true;
+    checkIfReductionNeeded();
+    //dSum += dCard[0].value;
     while(dSum<=17){
         dealAnotherCard('dealer');
         assignValue('dealer');
         renderCardValue('dealer');
+        checkIfReductionNeeded();
     }
     checkWinAfterStand();
 });
+
