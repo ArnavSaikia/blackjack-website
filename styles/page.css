@@ -53,7 +53,61 @@
 body{
     background-image: url('/gui/b1.jpg');
     background-size: cover;
+    font-family: "Space Grotesk", sans-serif;
+    padding-top: 30px;
 }
+
+.nav-bar{
+    background-color: rgb(33, 38, 40);
+    color: #FFFEFEff;
+    padding: 10px;
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 42px;
+    top: 0px;
+    left: 0px;
+    padding: 0 0 0 0;
+    
+    border-top: 0px;
+    border-bottom: 2px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: rgb(210, 181, 13);
+}
+
+.card-logo{
+    width: 100px;
+    height:42px;
+    background-color: rgb(174, 150, 10);
+}
+
+.balance-container,.total-bet-container,.amount-won-container,.bets-min-max-container{
+    width: 150px;
+    height:42px;
+    border-right: 2px;
+    border-style: solid;
+    border-top: 0px;
+    border-bottom:0px;
+    border-left: 0px;
+}
+
+.balance-text,.total-bet-text,.amount-won-text,.min-text,.max-text{
+    display: block;
+    font-size: 15px;
+    margin-left: 15px;
+    color: rgb(148, 144, 144);
+}
+
+.balance-amount,.total-bet-amount,.amount-won-amount{
+    font-size: 17px;
+    margin-left: 16px;
+    margin-bottom: 2px;
+}
+
 
 .card{
     margin-right: 12px;
