@@ -29,7 +29,7 @@
 }
 
 .name{
-    font-family: "Rye", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 25px;
     font-weight: bold;
     color: rgb(186, 184, 184);
@@ -42,7 +42,7 @@
     top: 10px;
     right: 10px;
     color: white;
-    font-family: "Rye", serif;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 .stand-button,.hit-button{
@@ -53,7 +53,7 @@
     margin-left: 13px;
 
     border:none;
-    font-family: "Rye", serif;
+    font-family: "Space Grotesk", sans-serif;
     background-color: rgb(53, 53, 53);
     color: rgb(186, 184, 184);
 }
@@ -61,6 +61,12 @@
 .player-card-value,.dealer-card-value{
     color: white;
     position: fixed;
+}
+
+.card{
+    margin-right: 12px;
+    border: 3px white solid;
+    border-radius: 9px;
 }
 
 .dealer-card-value{
@@ -72,3 +78,39 @@
     bottom: 175px;
     right: 250px;
 }
+
+.winloss-popup{
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(1, 1, 0);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    font-family: "Space Grotesk", sans-serif;
+    z-index: 100;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-button{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    background-color: #465B64ff;
+    border: none;
+    color: #FFFEFEff;
+    border-radius: 3px;
+}
+
+.popup-game-status{
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+

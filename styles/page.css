@@ -51,10 +51,11 @@
 
 
 body{
-    background-image: url('/gui/b1.jpg');
+    /*background-image: url('/gui/b1.jpg');*/
+    background-color: rgb(18, 18, 18);
     background-size: cover;
     font-family: "Space Grotesk", sans-serif;
-    padding-top: 30px;
+    padding-top: 44px;
 }
 
 .nav-bar{
@@ -106,45 +107,6 @@ body{
     font-size: 17px;
     margin-left: 16px;
     margin-bottom: 2px;
-}
-
-
-.card{
-    margin-right: 12px;
-}
-
-.winloss-popup{
-    opacity: 0;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(1, 1, 0);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    font-family: "Rye", serif;
-    z-index: 100;
-
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.close-button{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    background-color: #465B64ff;
-    border: none;
-    color: #FFFEFEff;
-    border-radius: 3px;
-}
-
-.popup-game-status{
-    font-size: 20px;
-    margin-bottom: 7px;
 }
 
 
