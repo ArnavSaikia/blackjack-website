@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack</title>
+    <link rel="stylesheet" href="styles/temp.css">
+    <link rel="stylesheet" href="styles/page.css">
+    <link rel="stylesheet" href="styles/game.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="nav-bar">   <!--remember to add links on the right hand side and a blackjack logo in the center-->
+        <div class="card-logo"></div>
+        <div class="balance-container">
+            <span class="balance-text">BALANCE:</span>
+            <span class="balance-amount">$1500</span>
+        </div>
+        <div class="total-bet-container">
+            <span class = "total-bet-text">TOTAL BET</span>
+            <span class="total-bet-amount">$1000</span>
+        </div>
+        <div class="amount-won-container">
+            <span class="amount-won-text">AMOUNT WON</span>
+            <span class="amount-won-amount">$200</span>
+        </div>
+        <div class="bets-min-max-container">
+            <span class="min-text">MIN $1</span>
+            <span class="max-text">MAX $500</span>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div class="blackjack-logo">
+            <span class="blackjack-text">BLACKJACK</span>
+        </div>
+
+    </nav>
+
+    <div class="container">
+        <div class="bets">
+            <button class="deal-amount-button js-1">
+                <span class="amount-text">$1</span>
+            </button>
+            <button class="deal-amount-button js-10">
+                <span class="amount-text">$10</span>
+            </button>
+            <button class="deal-amount-button js-50">
+                <span class="amount-text">$50</span>
+            </button>
+            <button class="deal-amount-button js-100">
+                <span class="amount-text">$100</span>
+            </button>
+            <button class="deal-amount-button js-500">
+                <span class="amount-text">$500</span>
+            </button>
+            <button class="deal-amount-button js-1000">
+                <span class="amount-text">$1000</span>
+            </button>
+        </div>
+
+        <div class="button-container">
+            <div class = "deal-container">
+                <button class="deal-button">Deal</button>
+            </div>
+            <div class="allin-container">
+                <button class="allin-amount-button js-allin">
+                    <span class="allin-text">All In</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/temp.js"></script>
+</body>
+
+</html>

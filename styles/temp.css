@@ -1,0 +1,56 @@
+body{
+    background-color: rgb(18, 18, 18);
+    background-size: cover;
+    font-family: "Space Grotesk", sans-serif;
+    padding-top: 44px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.bets{
+    height: 500px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deal-amount-button {
+    /*background-color: transparent;*/
+    border: none;
+    position: relative;
+    cursor: pointer;
+    display: inline;
+    font-size: 24px;
+
+    background-color: rgb(53, 53, 53);
+    color: rgb(186, 184, 184);
+
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex;
+}
+
+.deal-button, .allin-amount-button {
+    height:50px;
+    width: 90px;
+    border-radius: 50px;
+    margin-right: 25px;
+    margin-left: 17px;
+
+    border:none;
+    font-family: "Space Grotesk", sans-serif;
+    background-color: rgb(53, 53, 53);
+    color: rgb(186, 184, 184);
+}
+
