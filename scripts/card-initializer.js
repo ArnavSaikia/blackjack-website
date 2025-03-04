@@ -72,6 +72,15 @@ initializeCard();
 renderCardValue('player');
 renderCardValue('dealer');
 
+function reinitialize(){
+    let pCard=[]; let dCard=[];
+    let pSum=0; let dSum=0;
+    let standActive=false;
+    initializeCard();
+    renderCardValue('player');
+    renderCardValue('dealer');
+}
+
 function isAlreadySelected(chosen){
     for(let i=0;i<usedCards.length;i++){
         if(usedCards[i]===chosen){
@@ -116,6 +125,7 @@ function initializeCard(){
     `
     document.querySelector('.dealer-cards-area').innerHTML = dCardHTML;
     assignValue('player');
+    checkIfReductionNeeded();   // in case of double ace in the first 2 cards
     assignValue('dealer');
 }
 
@@ -169,6 +179,7 @@ function findAceCard(){     //finding if an ace card exists so its alt value can
     for(let i=0; i<pCard.length; i++) {
         if(pCard[i].value===11 && pCard[i].altStatus!==true){
             pCard[i].altStatus = true;
+            pCard[i].value = 1;
             //return pCard[i];
             return true;
         }
@@ -177,8 +188,28 @@ function findAceCard(){     //finding if an ace card exists so its alt value can
 }
 
 function checkIfReductionNeeded(){
-    if(pSum>21 && findAceCard()){
-            pSum -= 10;
+    if(pSum>21){
+        findAceCard();
+        assignValue('player');
+    }
+}
+
+function findDealerAceCard(){     //finding if an ace card exists so its alt value can be used
+    for(let i=0; i<dCard.length; i++) {
+        if(dCard[i].value===11 && dCard[i].altStatus!==true){
+            dCard[i].altStatus = true;
+            dCard[i].value = 1;
+            //return pCard[i];
+            return true;
+        }
+    }
+    return false;  
+}
+
+function checkIfDealerReductionNeeded(){
+    if(dSum>21){
+        findDealerAceCard();
+        assignValue('dealer');
     }
 }
 
@@ -258,12 +289,34 @@ document.querySelector('.stand-button').addEventListener('click',() => {
     standActive = true;
     checkIfReductionNeeded();
     //dSum += dCard[0].value;
+    assignValue('dealer');
+    checkIfDealerReductionNeeded();
+    renderCardValue('dealer');
+    if(dSum>=17){
+        checkWinAfterStand();
+        return;
+    }
     while(dSum<=17){
         dealAnotherCard('dealer');
         assignValue('dealer');
         renderCardValue('dealer');
-        checkIfReductionNeeded();
+        checkIfDealerReductionNeeded();
     }
     checkWinAfterStand();
 });
 
+//when checking for ace card reduction if dealer value is reassigned in a next iteration the ace's 11 value is being added. fix it
+
+document.querySelector('.play-again-button').addEventListener('click',() => {
+    /*document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+    document.querySelector('.winloss-popup').style.opacity = 0;
+    document.querySelector('.popup-game-status').innerHTML = '';
+    reinitialize();*/
+    location.reload();
+});
+
+document.querySelector('.close-button').addEventListener('click',() => {
+    document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+    document.querySelector('.winloss-popup').style.opacity = 0;
+    //document.querySelector('.popup-game-status').innerHTML = '';
+});

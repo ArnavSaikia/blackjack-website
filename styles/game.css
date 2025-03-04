@@ -78,38 +78,22 @@
     right: 250px;
 }
 
-.winloss-popup{
-    opacity: 0;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(1, 1, 0);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    font-family: "Space Grotesk", sans-serif;
-    z-index: 100;
-
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .close-button{
     position: absolute;
     top: 5px;
     right: 5px;
     cursor: pointer;
-    background-color: #465B64ff;
+    background-color: rgb(33, 38, 40);
     border: none;
-    color: #FFFEFEff;
+    color: white;
+    font-weight: bold;
     border-radius: 3px;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding-top: 2px;
 }
 
-.popup-game-status{
-    font-size: 20px;
-    margin-bottom: 7px;
-}
+
 
 
