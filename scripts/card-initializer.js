@@ -1,3 +1,4 @@
+import {playerStats,saveToStorage,loadFromStorage} from './localStorageUtil.js';
 
 //writing details of every card in cardsList
 
@@ -69,8 +70,21 @@ let pCard=[]; let dCard=[];
 let pSum=0; let dSum=0;
 let standActive=false;
 initializeCard();
+initializePlayerStats();
 renderCardValue('player');
 renderCardValue('dealer');
+
+
+function initializePlayerStats() {
+    loadFromStorage();
+    renderAll();
+}
+
+function renderAll(){
+    document.querySelector('.balance-amount').innerHTML = `$${playerStats.balance}`;
+    document.querySelector('.total-bet-amount').innerHTML = `$${playerStats.totalBet}`;
+    document.querySelector('.amount-won-amount').innerHTML = `$${playerStats.amountWon}`;
+}
 
 function reinitialize(){
     let pCard=[]; let dCard=[];
@@ -226,6 +240,10 @@ function checkWinAfterStand(){
             //add code here to reflect how much amount won/lost  (how much the bet was)
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            playerStats.amountWon += playerStats.totalBet;
+            playerStats.balance += (2*playerStats.totalBet);
+            saveToStorage();
+            renderAll();
         }, 1500);
     }
     else if(pSum>dSum){
@@ -239,6 +257,10 @@ function checkWinAfterStand(){
             //add code here to reflect how much amount won/lost  (how much the bet was)
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            playerStats.amountWon += playerStats.totalBet;
+            playerStats.balance += (2*playerStats.totalBet);
+            saveToStorage();
+            renderAll();
         }, 1500);
     }
     else if(pSum===dSum){
@@ -252,6 +274,7 @@ function checkWinAfterStand(){
             //add code here to reflect how much amount won/lost  (how much the bet was)
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+
         }, 1500); 
     }
     else{
@@ -265,7 +288,7 @@ function checkWinAfterStand(){
             //add code here to reflect how much amount won/lost  (how much the bet was)
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
-        }, 1500);  
+        }, 1500);
     }
 
 }
@@ -278,9 +301,8 @@ document.querySelector('.hit-button').addEventListener('click',() => {
     renderCardValue('player');
     if(pSum>21){
         document.querySelector('.popup-game-status').innerHTML = 'Bust! You Lose';
-            //add code here to reflect how much amount won/lost  (how much the bet was)
-            document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
-            document.querySelector('.winloss-popup').style.opacity = 1;
+        document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
+        document.querySelector('.winloss-popup').style.opacity = 1;
     }
 }); //addivng event listener to buttons
 
@@ -312,7 +334,7 @@ document.querySelector('.play-again-button').addEventListener('click',() => {
     document.querySelector('.winloss-popup').style.opacity = 0;
     document.querySelector('.popup-game-status').innerHTML = '';
     reinitialize();*/
-    location.reload();
+    window.location.href = 'temp.html';
 });
 
 document.querySelector('.close-button').addEventListener('click',() => {

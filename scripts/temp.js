@@ -1,25 +1,9 @@
-let playerStats = {
-    balance: 5000,
-    totalBet: 0,
-    amountWon: 0,
-}
-
-function saveToStorage(){
-    localStorage.setItem('playerStats', JSON.stringify(playerStats));
-}
-
-function loadFromStorage(){
-    let data = localStorage.getItem('playerStats');
-    if(data){
-        playerStats = JSON.parse(data);
-    }
-    else console.log("Couldn't load player stats");
-}
+import {playerStats,saveToStorage,loadFromStorage} from './localStorageUtil.js';
 
 function initializeAmount(){
     loadFromStorage();
     playerStats.totalBet = 0;
-    playerStats.amountWon = 0;
+    //playerStats.amountWon = 0;
 }
 
 function addBet(amount){
@@ -69,6 +53,17 @@ document.querySelector('.js-1000').addEventListener('click', () =>{
     renderAll();
 });
 
+document.querySelector('.allin-amount-button').addEventListener('click', () =>{
+    addBet(playerStats.balance);
+    //saveToStorage();
+    renderAll();
+});
+
+document.querySelector('.deal-button').addEventListener('click', () =>{
+    saveToStorage();
+    window.location.href = 'main.html';
+});
+
 
 
 
@@ -76,3 +71,10 @@ document.querySelector('.js-1000').addEventListener('click', () =>{
 //program flow
 initializeAmount();
 renderAll();
+/*
+let a = () => {
+    playerStats.balance = 10000;
+    saveToStorage();
+}
+a();
+*/
