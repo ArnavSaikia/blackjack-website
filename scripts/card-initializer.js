@@ -237,7 +237,7 @@ function checkWinAfterStand(){
         }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'House Busted! You Win';
-            //add code here to reflect how much amount won/lost  (how much the bet was)
+            updatePopUP('win');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
             playerStats.amountWon += playerStats.totalBet;
@@ -254,7 +254,7 @@ function checkWinAfterStand(){
         }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'You Win!';
-            //add code here to reflect how much amount won/lost  (how much the bet was)
+            updatePopUP('win');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
             playerStats.amountWon += playerStats.totalBet;
@@ -271,10 +271,12 @@ function checkWinAfterStand(){
         }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'It\'s a Draw';
-            //add code here to reflect how much amount won/lost  (how much the bet was)
+            updatePopUP('draw');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
-
+            playerStats.balance += playerStats.totalBet;
+            saveToStorage();
+            renderAll();
         }, 1500); 
     }
     else{
@@ -285,12 +287,18 @@ function checkWinAfterStand(){
         }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'House Wins';
-            //add code here to reflect how much amount won/lost  (how much the bet was)
+            updatePopUP('loss');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
         }, 1500);
     }
 
+}
+
+function updatePopUP(stat){
+    if(stat=='win') document.querySelector('.popup-amount').innerHTML = `Amount Won: $${playerStats.totalBet}`;
+    else if(stat=='loss') document.querySelector('.popup-amount').innerHTML = `Amount Lost: $${playerStats.totalBet}`;
+    else if(stat=='draw') document.querySelector('.popup-amount').innerHTML = `Amount Won: $0`;
 }
 
 
@@ -301,6 +309,7 @@ document.querySelector('.hit-button').addEventListener('click',() => {
     renderCardValue('player');
     if(pSum>21){
         document.querySelector('.popup-game-status').innerHTML = 'Bust! You Lose';
+        updatePopUP('loss');
         document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
         document.querySelector('.winloss-popup').style.opacity = 1;
     }
@@ -330,15 +339,10 @@ document.querySelector('.stand-button').addEventListener('click',() => {
 //when checking for ace card reduction if dealer value is reassigned in a next iteration the ace's 11 value is being added. fix it
 
 document.querySelector('.play-again-button').addEventListener('click',() => {
-    /*document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
-    document.querySelector('.winloss-popup').style.opacity = 0;
-    document.querySelector('.popup-game-status').innerHTML = '';
-    reinitialize();*/
     window.location.href = 'temp.html';
 });
 
 document.querySelector('.close-button').addEventListener('click',() => {
     document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
     document.querySelector('.winloss-popup').style.opacity = 0;
-    //document.querySelector('.popup-game-status').innerHTML = '';
 });
