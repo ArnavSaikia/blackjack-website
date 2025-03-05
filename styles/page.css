@@ -84,6 +84,11 @@ body{
     width: 100px;
     height:42px;
     background-color: rgb(174, 150, 10);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
 }
 
 .balance-container,.total-bet-container,.amount-won-container,.bets-min-max-container{
@@ -165,3 +170,8 @@ body{
     /*-webkit-text-stroke: 1px rgb(174, 150, 10);*/
 }
 
+.cash{
+    height: 31px;
+    width: 50px;
+
+}

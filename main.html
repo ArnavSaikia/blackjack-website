@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="styles/page.css">
         <link rel="stylesheet" href="styles/game.css">
+        <title>BlackJack</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,9 @@
     </head>
     <body>
         <nav class="nav-bar">   <!--remember to add links on the right hand side and a blackjack logo in the center-->
-            <div class="card-logo"></div>
+            <div class="card-logo">
+                <img src="gui/cash2.svg" class="cash">
+            </div>
             <div class="balance-container">
                 <span class="balance-text">BALANCE:</span>
                 <span class="balance-amount">$1500</span>
@@ -28,7 +31,7 @@
             </div>
             <div class="bets-min-max-container">
                 <span class="min-text">MIN $1</span>
-                <span class="max-text">MAX $500</span>
+                <span class="max-text">MAX $10000</span>
             </div>
             <div style="flex-grow: 1;"></div>
             <div class="blackjack-logo">

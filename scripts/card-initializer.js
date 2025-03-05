@@ -336,8 +336,6 @@ document.querySelector('.stand-button').addEventListener('click',() => {
     checkWinAfterStand();
 });
 
-//when checking for ace card reduction if dealer value is reassigned in a next iteration the ace's 11 value is being added. fix it
-
 document.querySelector('.play-again-button').addEventListener('click',() => {
     window.location.href = 'temp.html';
 });
