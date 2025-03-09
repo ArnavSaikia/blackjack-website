@@ -426,7 +426,7 @@ document.querySelector('.stand-button').addEventListener('click', () => {
 });
 
 document.querySelector('.play-again-button').addEventListener('click',() => {
-    window.location.href = 'temp.html';
+    window.location.href = 'index.html';
 });
 
 document.querySelector('.close-button').addEventListener('click',() => {
