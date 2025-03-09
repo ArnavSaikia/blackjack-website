@@ -5,10 +5,6 @@
     align-items: center;
 }
 
-/*.playArea{
-    position: absolute;
-}*/
-
 .play-buttons{
     display: flex;
     justify-content: center;

@@ -1,57 +1,5 @@
-/* 
-    Color Palette for the website
-    
-    CSS HEX:
-    --white: #FFFEFEff;
-    --black: #010100ff;
-    --french-gray: #B1BFC7ff;
-    --cadet-gray: #78919Dff;
-    --paynes-gray: #465B64ff;
-
-    CSS HSL:
-    --white: hsla(0, 100%, 100%, 1);
-    --black: hsla(60, 100%, 0%, 1);
-    --french-gray: hsla(202, 16%, 74%, 1);
-    --cadet-gray: hsla(199, 16%, 54%, 1);
-    --paynes-gray: hsla(198, 18%, 33%, 1);
-
-    SCSS HEX:
-    $white: #FFFEFEff;
-    $black: #010100ff;
-    $french-gray: #B1BFC7ff;
-    $cadet-gray: #78919Dff;
-    $paynes-gray: #465B64ff;
-
-    SCSS HSL:
-    $white: hsla(0, 100%, 100%, 1);
-    $black: hsla(60, 100%, 0%, 1);
-    $french-gray: hsla(202, 16%, 74%, 1);
-    $cadet-gray: hsla(199, 16%, 54%, 1);
-    $paynes-gray: hsla(198, 18%, 33%, 1);
-
-    SCSS RGB:
-    $white: rgba(255, 254, 254, 1);
-    $black: rgba(1, 1, 0, 1);
-    $french-gray: rgba(177, 191, 199, 1);
-    $cadet-gray: rgba(120, 145, 157, 1);
-    $paynes-gray: rgba(70, 91, 100, 1);
-
-    SCSS Gradient:
-    $gradient-top: linear-gradient(0deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-right: linear-gradient(90deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-bottom: linear-gradient(180deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-left: linear-gradient(270deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-top-right: linear-gradient(45deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-bottom-right: linear-gradient(135deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-top-left: linear-gradient(225deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-bottom-left: linear-gradient(315deg, #FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-    $gradient-radial: radial-gradient(#FFFEFEff, #010100ff, #B1BFC7ff, #78919Dff, #465B64ff);
-*/
-
-
 
 body{
-    /*background-image: url('/gui/b1.jpg');*/
     background-color: rgb(18, 18, 18);
     background-size: cover;
     font-family: "Space Grotesk", sans-serif;
@@ -63,7 +11,6 @@ body{
     color: #FFFEFEff;
     padding: 10px;
     display: flex;
-    /*justify-content: space-between;*/
     align-items: center;
     position: fixed;
     width: 100%;
@@ -71,6 +18,7 @@ body{
     top: 0px;
     left: 0px;
     padding: 0 0 0 0;
+    z-index: 1001;
     
     border-top: 0px;
     border-bottom: 2px;

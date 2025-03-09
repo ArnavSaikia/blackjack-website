@@ -143,7 +143,7 @@ function initializeCard(){
     assignValue('dealer');
 }
 
-function dealAnotherCard(toWho){
+/*function dealAnotherCard(toWho){
     if(toWho==='player'){
         let card = returnCard(generateRandom());
         pCard.push(card);
@@ -158,6 +158,50 @@ function dealAnotherCard(toWho){
         document.querySelector('.dealer-cards-area').innerHTML += `
             <img class ="card" src="${dCard[dCard.length-1].img}">
         `;
+    }
+}*/
+
+function dealAnotherCard(toWho) {
+    if (toWho === 'player') {
+        let card = returnCard(generateRandom());
+        pCard.push(card);
+
+        // Create a new image element
+        const cardImage = document.createElement('img');
+        //cardImage.classList.add('card');
+        cardImage.classList.add('dealt-card');
+        cardImage.src = pCard[pCard.length - 1].img;
+
+        // Append the new card to the player's card area
+        const playerCardsArea = document.querySelector('.player-cards-area');
+        playerCardsArea.appendChild(cardImage);
+
+        // Force reflow to ensure the transition works
+        void cardImage.offsetWidth;
+
+        // Add the 'visible' class to trigger the transition
+        cardImage.classList.add('visible');
+    }
+
+    if (toWho === 'dealer') {
+        let card = returnCard(generateRandom());
+        dCard.push(card);
+
+        // Create a new image element
+        const cardImage = document.createElement('img');
+        //cardImage.classList.add('card');
+        cardImage.classList.add('dealt-card');
+        cardImage.src = dCard[dCard.length - 1].img;
+
+        // Append the new card to the dealer's card area
+        const dealerCardsArea = document.querySelector('.dealer-cards-area');
+        dealerCardsArea.appendChild(cardImage);
+
+        // Force reflow to ensure the transition works
+        void cardImage.offsetWidth;
+
+        // Add the 'visible' class to trigger the transition
+        cardImage.classList.add('visible');
     }
 }
 
@@ -224,6 +268,7 @@ function checkIfDealerReductionNeeded(){
     if(dSum>21){
         findDealerAceCard();
         assignValue('dealer');
+        renderCardValue('dealer');
     }
 }
 
@@ -232,9 +277,6 @@ function checkWinAfterStand(){
     if(dSum>21){
         assignValue('dealer');
         renderCardValue('dealer');
-        /*setTimeout(() =>{
-            alert('House Busted! You Win');
-        }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'House Busted! You Win';
             updatePopUP('win');
@@ -249,9 +291,6 @@ function checkWinAfterStand(){
     else if(pSum>dSum){
         assignValue('dealer');
         renderCardValue('dealer');
-        /*setTimeout(() =>{
-            alert('You Win');
-        }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'You Win!';
             updatePopUP('win');
@@ -266,9 +305,6 @@ function checkWinAfterStand(){
     else if(pSum===dSum){
         assignValue('dealer');
         renderCardValue('dealer');
-        /*setTimeout(() =>{
-            alert('It\'s a Draw');
-        }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'It\'s a Draw';
             updatePopUP('draw');
@@ -282,9 +318,6 @@ function checkWinAfterStand(){
     else{
         assignValue('dealer');
         renderCardValue('dealer');
-        /*setTimeout(() =>{
-            alert('House Wins');
-        }, 1500);*/
         setTimeout(() =>{
             document.querySelector('.popup-game-status').innerHTML = 'House Wins';
             updatePopUP('loss');
@@ -315,7 +348,7 @@ document.querySelector('.hit-button').addEventListener('click',() => {
     }
 }); //addivng event listener to buttons
 
-document.querySelector('.stand-button').addEventListener('click',() => {
+/*document.querySelector('.stand-button').addEventListener('click',() => {
     document.querySelector('.back-of-card').src = dCard[1].img;
     standActive = true;
     checkIfReductionNeeded();
@@ -328,12 +361,62 @@ document.querySelector('.stand-button').addEventListener('click',() => {
         return;
     }
     while(dSum<=17){
-        dealAnotherCard('dealer');
-        assignValue('dealer');
-        renderCardValue('dealer');
-        checkIfDealerReductionNeeded();
+        setTimeout(() => {
+            dealAnotherCard('dealer');
+            assignValue('dealer');
+            renderCardValue('dealer');
+            checkIfDealerReductionNeeded();
+        },1000);
     }
     checkWinAfterStand();
+});*/
+
+document.querySelector('.stand-button').addEventListener('click', () => {
+    // Disable buttons to prevent further interaction
+    document.querySelector('.stand-button').disabled = true;
+    document.querySelector('.hit-button').disabled = true;
+
+    // Reveal the dealer's hidden card
+    document.querySelector('.back-of-card').src = dCard[1].img;
+    standActive = true;
+
+    // Initial checks and updates
+    checkIfReductionNeeded();
+    assignValue('dealer');
+    checkIfDealerReductionNeeded();
+    renderCardValue('dealer');
+
+    // If dealer's sum is already >= 17, check for win and return
+    if (dSum >= 17) {
+        checkWinAfterStand();
+        document.querySelector('.stand-button').disabled = false;
+        document.querySelector('.hit-button').disabled = false;
+        return;
+    }
+
+    // Function to deal cards sequentially with a delay
+    const dealDealerCards = () => {
+        if (dSum < 17) {
+            setTimeout(() => {
+                dealAnotherCard('dealer');
+                assignValue('dealer');
+                renderCardValue('dealer');
+                checkIfDealerReductionNeeded();
+
+                // Recursively call the function to deal the next card
+                dealDealerCards();
+            }, 1000); // 1-second delay between cards
+        } else {
+            // Once the dealer's sum is >= 17, check for win
+            checkWinAfterStand();
+            // Re-enable buttons
+            document.querySelector('.stand-button').disabled = false;
+            document.querySelector('.hit-button').disabled = false;
+        }
+    };
+
+    // Start dealing dealer cards
+    dealDealerCards();
 });
 
 document.querySelector('.play-again-button').addEventListener('click',() => {
