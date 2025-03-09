@@ -141,6 +141,7 @@ function initializeCard(){
     assignValue('player');
     checkIfReductionNeeded();   // in case of double ace in the first 2 cards
     assignValue('dealer');
+    document.querySelector('.play-again-button').disabled = true;
 }
 
 /*function dealAnotherCard(toWho){
@@ -282,6 +283,7 @@ function checkWinAfterStand(){
             updatePopUP('win');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            document.querySelector('.play-again-button').disabled = false;
             playerStats.amountWon += playerStats.totalBet;
             playerStats.balance += (2*playerStats.totalBet);
             saveToStorage();
@@ -296,6 +298,7 @@ function checkWinAfterStand(){
             updatePopUP('win');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            document.querySelector('.play-again-button').disabled = false;
             playerStats.amountWon += playerStats.totalBet;
             playerStats.balance += (2*playerStats.totalBet);
             saveToStorage();
@@ -310,6 +313,7 @@ function checkWinAfterStand(){
             updatePopUP('draw');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            document.querySelector('.play-again-button').disabled = false;
             playerStats.balance += playerStats.totalBet;
             saveToStorage();
             renderAll();
@@ -323,6 +327,7 @@ function checkWinAfterStand(){
             updatePopUP('loss');
             document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
             document.querySelector('.winloss-popup').style.opacity = 1;
+            document.querySelector('.play-again-button').disabled = false;
         }, 1500);
     }
 
@@ -345,6 +350,7 @@ document.querySelector('.hit-button').addEventListener('click',() => {
         updatePopUP('loss');
         document.querySelector('.winloss-popup').style.transition = 'opacity 0.5s linear 0s';
         document.querySelector('.winloss-popup').style.opacity = 1;
+        document.querySelector('.play-again-button').disabled = false;
     }
 }); //addivng event listener to buttons
 

@@ -42,6 +42,7 @@
 }
 
 .stand-button,.hit-button{
+    cursor: pointer;
     height:50px;
     width: 90px;
     border-radius: 50px;
@@ -52,6 +53,19 @@
     font-family: "Space Grotesk", sans-serif;
     background-color: rgb(53, 53, 53);
     color: rgb(186, 184, 184);
+}
+
+.stand-button:hover, .hit-button:hover{
+    background-color: rgb(186, 184, 184);
+    color: rgb(53, 53, 53);
+    width: 120px;
+    transition: background-color 0.2s ease, color 0.2s ease, width 0.2s ease;
+}
+
+.stand-button:active, .hit-button:active{
+    background-color: rgb(166, 164, 164);
+    color: rgb(53, 53, 53);
+    width: 120px;
 }
 
 .player-card-value,.dealer-card-value{
@@ -74,21 +88,6 @@
     right: 250px;
 }
 
-
-.close-button{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    background-color: rgb(33, 38, 40);
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 3px;
-    margin-top: 5px;
-    margin-right: 5px;
-    padding-top: 2px;
-}
 
 
 
